@@ -54,7 +54,7 @@ with data as f:
                         for w in acvalue:
                             newac = w.replace(";", '')
                             AC.append(newac)
-                    if not acvaluecombined:
+                    if acvaluecombined:
                         print("'''acvaluecombined'''")
                         for w in acvalue2:
                             newac = w.replace(";", '')
