@@ -51,12 +51,12 @@ with data as f:
             for c in newkw:                #loops through all keywords in file
                 c = c.replace(".", "")
                 if c in keywords:       #if keyword in file is keyword we are looking for
-                    if acvalue != None:
-                        #print(acvalue)
+                    if acvalue:
+                        print("''''acvalue'''''")
                         for w in acvalue:
                             newac = w.replace(";", '')
                             AC.append(newac)
-                    if acvaluecombined != None:
+                    if acvaluecombined:
                         print("'''acvaluecombined'''")
                         for w in acvalue2:
                             newac = w.replace(";", '')
