@@ -22,50 +22,39 @@ keywords = args.keywords
 
 
 AC=[]
-data = open(args.swissprot,"r")
 
-with data as f:
-    content = f.readlines()
-    for i in range(len(content) - 1):
-        acvaluecombined = []
-        acvalue = []
-        # Looking for 2 AC LINES IN A ROW, GET THEIR CONTENT INTO ONE LIST
-        if content[i].rstrip().startswith("AC") and content[i+1].rstrip().startswith("AC"):
-            ac1 = content[i].rstrip()[2:]
-            acvalue1 = ac.split()
-            ac2 = content[i+1].rstrip()[2:]
-            acvalue2 = ac2.split()
 
-            acvaluecombined = acvalue1 + acvalue2
-        # IF ONLY 1 LINE WITH AC
-        elif content[i].rstrip().startswith("AC") and not content[i+1].rstrip().startswith("AC"):
-            ac = content[i].rstrip()[2:]
-            acvalue = ac.split()
-        # GET THE KEYWORD LINE
-        if content[i].rstrip().startswith("KW"):       #get line with all keywords
-            kw = content[i].rstrip()[2:]
+with open(args.swissprot) as data:
+    for line in data:
+        if line.startswith("AC"):
+            ac = line[2:]               #get line with ac numbers
+            acvalue = ac.split()        #store the values of all ac numbers as a list of single strings
+            #print(acvalue)
+            nextline = next(data, '').strip()
+            if nextline.startswith("AC"):
+                line2 = nextline
+                ac = line2[2:]
+                #print(ac)
+                acvalue2 = ac.split()
+                #print(acvalue2)
+            #print(acvalue)
+        if line.startswith("KW"):       #get line with all keywords
+            kw = line[2:]
             kw = kw.split(';')          #get all the keywords as a single string
+            #print(kw)
             newkw=[]
             for element in kw:
                 newkw.append(element.strip())   # to remove every symbol influencing the string
             for c in newkw:                #loops through all keywords in file
                 c = c.replace(".", "")
                 if c in keywords:       #if keyword in file is keyword we are looking for
-                    if acvalue:
-                        print("''''acvalue'''''")
-                        for w in acvalue:
-                            newac = w.replace(";", '')
-                            AC.append(newac)
-                    if acvaluecombined:
-                        print("'''acvaluecombined'''")
-                        for w in acvalue2:
-                            newac = w.replace(";", '')
-                            AC.append(newac)
+                    #print(acvalue)
+                    print(acvalue2)
+                    for w in acvalue:
+                        newac = w.replace(";", '')
+                        AC.append(newac)
 
 ac_sorted = list(set(AC))  #set so duplicates are removed
 
 for value in sorted(ac_sorted):
     print(value)
-
-      '''
-
