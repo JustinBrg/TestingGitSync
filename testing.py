@@ -62,33 +62,8 @@ with data as f:
 
 ac_sorted = list(set(AC))  #set so duplicates are removed
 
-#for value in sorted(ac_sorted):
- #   print(value)
-'''                 
-ac_sorted = list(set(AC))  #set so duplicates are removed
-
 for value in sorted(ac_sorted):
     print(value)
 
-#print(len(AC))
-
-
-
-#isEmpty = (len(matches) == 0)
-            #if isEmpty:
-             #   continue
-            #else:
-             #   for w in acvalue:
-              #      newac = w.replace(";", '')
-               #     AC.append(newac)
-
-
-#for c in kw:
- #   c = c.replace(".", "")
-  #  c = c.replace(" ", "")
-   # if c in keywords:
-    #    for w in acvalue:
-     #       newac = w.replace(";", '')
-      #      AC.append(newac)
       '''
 
