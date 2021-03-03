@@ -27,8 +27,8 @@ data = open(args.swissprot,"r")
 with data as f:
     content = f.readlines()
     for i in range(len(content) - 1):
-        acvaluecombined = ""
-        acvalue = ""
+        acvaluecombined = []
+        acvalue = []
         # Looking for 2 AC LINES IN A ROW, GET THEIR CONTENT INTO ONE LIST
         if content[i].rstrip().startswith("AC") and content[i+1].rstrip().startswith("AC"):
             ac1 = content[i].rstrip()[2:]
@@ -51,12 +51,12 @@ with data as f:
             for c in newkw:                #loops through all keywords in file
                 c = c.replace(".", "")
                 if c in keywords:       #if keyword in file is keyword we are looking for
-                    if acvalue != "":
+                    if acvalue != None:
                         #print(acvalue)
                         for w in acvalue:
                             newac = w.replace(";", '')
                             AC.append(newac)
-                    if acvaluecombined != "":
+                    if acvaluecombined != None:
                         print("'''acvaluecombined'''")
                         for w in acvalue2:
                             newac = w.replace(";", '')
